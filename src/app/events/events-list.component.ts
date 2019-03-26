@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EventService } from './shared/events.service';
 import { ToastrService } from '../common/toastr.service';
 import { ActivatedRoute } from '@angular/router';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { IEvent } from './shared';
 
 @ Component({
   template: `
@@ -19,7 +19,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 })
 
 export class EventListComponent implements OnInit {
-  events: any;
+  events: IEvent[];
 
   constructor(private eventService: EventService,
               private toastr: ToastrService,
