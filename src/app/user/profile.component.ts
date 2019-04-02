@@ -1,11 +1,11 @@
-import { Component, OnInit, Inject } from "@angular/core";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { AuthService } from "./auth.service";
-import { Router } from "@angular/router";
+import { Component, OnInit, Inject } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from './auth.service';
+import { Router } from '@angular/router';
 import { TOASTR_TOKEN, Toastr } from '../common/toastr.service';
 
 @Component({
-  templateUrl: "./profile.component.html",
+  templateUrl: './profile.component.html',
   styles: [
     `
       em {
@@ -65,12 +65,12 @@ export class ProfileComponent implements OnInit {
 
   logout() {
     this.auth.logout().subscribe(() => {
-      this.router.navigate(["user/login"]);
+      this.router.navigate(['user/login']);
     });
   }
 
   cancel() {
-    this.router.navigate(["events"]);
+    this.router.navigate(['events']);
   }
 
   validateFirstName() {
