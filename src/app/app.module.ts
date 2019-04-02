@@ -5,19 +5,39 @@ import { RouterModule } from '@angular/router';
 import {
   EventListComponent,
   EventThumbNailComponent,
-  EventRouterActivator,
   EventDetailsComponent,
-  CreateEventComponent
+  CreateEventComponent,
+  CreateSessionComponent,
+  DurationPipe,
+  UpvoteComponent,
+  LocationValidator
 } from './events/index';
 import { EventsAppComponent } from './events-app.component';
 import { NavBarComponent } from './nav/navbar.component';
 import { appRoutes } from './routes';
 import { Error404Component } from './errors/404.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SessionListComponent } from './events/event-details/session.list.component';
+import { HttpClientModule } from '@angular/common/http';
+import {
+  TOASTR_TOKEN,
+  Toastr,
+  CollapsibleWellComponent,
+  JQ_TOKEN,
+  SimpleModalComponent,
+  ModalTriggerDirective
+} from './common/index';
+
+const toastr: Toastr = window['toastr'];
+const jQuery: Toastr = window['$'];
 
 @ NgModule({
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes)
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule.forRoot(appRoutes),
+    HttpClientModule
   ],
   declarations: [
     EventsAppComponent,
@@ -26,12 +46,28 @@ import { Error404Component } from './errors/404.component';
     NavBarComponent,
     EventDetailsComponent,
     CreateEventComponent,
-    Error404Component
+    Error404Component,
+    CreateSessionComponent,
+    SessionListComponent,
+    CollapsibleWellComponent,
+    DurationPipe,
+    SimpleModalComponent,
+    ModalTriggerDirective,
+    UpvoteComponent,
+    LocationValidator
   ],
-  providers: [EventRouterActivator,
+  providers: [
   {
     provide: 'canDeactivateCreateEvent',
     useValue: checkDirtyState
+  },
+  {
+    provide: TOASTR_TOKEN,
+    useValue: toastr
+  },
+  {
+    provide: JQ_TOKEN,
+    useValue: jQuery
   }
   ],
   bootstrap: [EventsAppComponent]

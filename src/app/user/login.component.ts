@@ -12,10 +12,16 @@ export class LoginComponent {
   userName: string;
   password: string;
   mouseoverLogin: boolean;
+  loginInvalid = false;
   constructor(private authService: AuthService, private router: Router) {}
   login(formValues) {
-    this.authService.loginUser(formValues.userName, formValues.password);
-    this.redirectToEventPage();
+    this.authService.loginUser(formValues.userName, formValues.password).subscribe(resp => {
+      if(!resp) {
+        this.loginInvalid = true;
+      } else {
+        this.redirectToEventPage();
+      }
+    });
   }
 
   redirectToEventPage() {
